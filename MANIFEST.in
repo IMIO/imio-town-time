@@ -1,0 +1,9 @@
+recursive-include imio_town_time *
+recursive-include imio_town_time/categories *
+recursive-include imio_town_time/agenda *
+recursive-include imio_town_time/forms *
+recursive-include imio_town_time/workflows *
+include MANIFEST.in
+include VERSION
+include README
+
