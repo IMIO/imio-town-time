@@ -1,0 +1,196 @@
+{
+  "agendas": [
+    {
+      "minimal_booking_delay": 1, 
+      "kind": "meetings", 
+      "meetingtypes": [
+        {
+          "duration": 9, 
+          "slug": "rendez-vous-contributions", 
+          "label": "Rendez-vous pour votre d\u00e9claration"
+        }, 
+        {
+          "duration": 18, 
+          "slug": "rendez-vous-pour-2-declarations-contributions", 
+          "label": "Rendez-vous pour 2 d\u00e9clarations contributions"
+        }, 
+        {
+          "duration": 27, 
+          "slug": "rendez-vous-pour-3-declarations-contributions", 
+          "label": "Rendez-vous pour 3 d\u00e9clarations contributions"
+        }, 
+        {
+          "duration": 36, 
+          "slug": "rendez-vous-pour-4-declarations-contributions", 
+          "label": "Rendez-vous pour 4 d\u00e9clarations contributions"
+        }, 
+        {
+          "duration": 45, 
+          "slug": "rendez-vous-pour-5-declarations-contributions", 
+          "label": "Rendez-vous pour 5 d\u00e9clarations contributions"
+        }
+      ], 
+      "label": "Agenda - Rendez-vous contributions", 
+      "desks": [
+        {
+          "timeperiods": [
+            {
+              "start_time": "09:00", 
+              "weekday": 1, 
+              "end_time": "12:00"
+            }, 
+            {
+              "start_time": "13:00", 
+              "weekday": 1, 
+              "end_time": "16:00"
+            }, 
+            {
+              "start_time": "09:00", 
+              "weekday": 3, 
+              "end_time": "12:00"
+            }, 
+            {
+              "start_time": "13:00", 
+              "weekday": 3, 
+              "end_time": "16:00"
+            }
+          ], 
+          "exceptions": [
+            {
+              "start_datetime": "2018-01-01 00:00:00", 
+              "recurrence_id": 0, 
+              "label": "", 
+              "update_datetime": "2018-04-18 09:07:58", 
+              "end_datetime": "2018-05-24 08:55:00", 
+              "external_id": ""
+            }, 
+            {
+              "start_datetime": "2018-05-24 18:00:00", 
+              "recurrence_id": 0, 
+              "label": "", 
+              "update_datetime": "2018-04-18 09:05:19", 
+              "end_datetime": "2018-05-29 08:55:00", 
+              "external_id": ""
+            }, 
+            {
+              "start_datetime": "2018-05-29 18:00:00", 
+              "recurrence_id": 0, 
+              "label": "", 
+              "update_datetime": "2018-04-18 09:06:35", 
+              "end_datetime": "2018-05-31 08:55:00", 
+              "external_id": ""
+            }, 
+            {
+              "start_datetime": "2018-05-31 18:00:00", 
+              "recurrence_id": 0, 
+              "label": "", 
+              "update_datetime": "2018-04-18 09:07:14", 
+              "end_datetime": "2018-06-05 08:55:00", 
+              "external_id": ""
+            }, 
+            {
+              "start_datetime": "2018-06-05 18:00:00", 
+              "recurrence_id": 0, 
+              "label": "", 
+              "update_datetime": "2018-04-18 09:07:44", 
+              "end_datetime": "2018-12-31 23:55:00", 
+              "external_id": ""
+            }, 
+            {
+              "start_datetime": "2019-02-01 00:00:00", 
+              "recurrence_id": 0, 
+              "label": "END", 
+              "update_datetime": "2019-01-18 10:34:19", 
+              "end_datetime": "2020-12-31 23:55:00", 
+              "external_id": ""
+            }
+          ], 
+          "slug": "guichet-1-1", 
+          "label": "Guichet 1"
+        }, 
+        {
+          "timeperiods": [
+            {
+              "start_time": "09:00", 
+              "weekday": 1, 
+              "end_time": "12:00"
+            }, 
+            {
+              "start_time": "13:00", 
+              "weekday": 1, 
+              "end_time": "16:00"
+            }, 
+            {
+              "start_time": "09:00", 
+              "weekday": 3, 
+              "end_time": "12:00"
+            }, 
+            {
+              "start_time": "13:00", 
+              "weekday": 3, 
+              "end_time": "16:00"
+            }
+          ], 
+          "exceptions": [
+            {
+              "start_datetime": "2018-01-01 00:00:00", 
+              "recurrence_id": 0, 
+              "label": "", 
+              "update_datetime": "2018-04-18 09:08:21", 
+              "end_datetime": "2018-05-24 08:55:00", 
+              "external_id": ""
+            }, 
+            {
+              "start_datetime": "2018-05-24 18:00:00", 
+              "recurrence_id": 0, 
+              "label": "", 
+              "update_datetime": "2018-04-18 09:08:44", 
+              "end_datetime": "2018-05-29 08:55:00", 
+              "external_id": ""
+            }, 
+            {
+              "start_datetime": "2018-05-29 18:00:00", 
+              "recurrence_id": 0, 
+              "label": "", 
+              "update_datetime": "2018-04-18 09:09:08", 
+              "end_datetime": "2018-05-31 08:55:00", 
+              "external_id": ""
+            }, 
+            {
+              "start_datetime": "2018-05-31 18:00:00", 
+              "recurrence_id": 0, 
+              "label": "", 
+              "update_datetime": "2018-04-18 09:09:37", 
+              "end_datetime": "2018-06-05 08:55:00", 
+              "external_id": ""
+            }, 
+            {
+              "start_datetime": "2018-06-05 18:00:00", 
+              "recurrence_id": 0, 
+              "label": "", 
+              "update_datetime": "2018-04-18 09:11:34", 
+              "end_datetime": "2018-12-31 23:55:00", 
+              "external_id": ""
+            }, 
+            {
+              "start_datetime": "2019-02-01 00:00:00", 
+              "recurrence_id": 0, 
+              "label": "", 
+              "update_datetime": "2019-01-18 10:34:47", 
+              "end_datetime": "2020-12-31 23:55:00", 
+              "external_id": ""
+            }
+          ], 
+          "slug": "guichet-2", 
+          "label": "Guichet 2"
+        }
+      ], 
+      "slug": "agenda-rendez-vous-contributions", 
+      "maximal_booking_delay": 56, 
+      "permissions": {
+        "edit": "Debug", 
+        "view": "Debug"
+      }
+    }
+  ]
+}

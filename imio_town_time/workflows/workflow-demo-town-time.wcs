@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<workflow id="26">
+  <name>demo - TOWn-Time</name>
+  <roles>
+    <role id="_receiver">Agent traitant</role>
+    <role id="_debug">Debug</role>
+  </roles><last_modification user_id="1">2019-01-18 15:38:00</last_modification>
+  <possible_status>
+    <status>
+      <id>1</id>
+      <name>R&#233;servation rdv</name>
+      <colour>FFFFFF</colour>
+      <visibility />
+      <items>
+        <item id="5" type="displaymsg">
+          <message>Un e-mail de confirmation vient de vous &#234;tre envoy&#233;.
+Pour valider votre demande de rendez-vous, veuillez cliquer sur le lien contenu dans le mail.</message>
+          <level>warning</level>
+          <position>top</position>
+        </item><item id="3" type="sendmail">
+          <to>
+            <item role_id="=form_var_email">=form_var_email</item>
+          </to><subject>TOWn-Time : Confirmer votre rendez-vous.</subject>
+          <body>Bonjour, 
+
+Veuillez cliquer sur le lien ci-dessous pour confirmer votre rendez-vous : 
+
+{% action_button "mail_confirmation" label="Confirmer mon rendez-vous" delay=2 %}
+
+(attention, ce lien n'est valide que 2 jours.)
+
+
+Information concernant votre rendez-vous : 
+
+
+{{ form_details }}
+
+
+Si vous contactez notre administration, veuillez communiquer votre num&#233;ro de suivis : 
+
+{{ form_tracking_code }}
+
+Si vous d&#233;sirez revoir votre d&#233;marche, suiviez ce lien : 
+
+{{ form_url }}
+</body>
+          <custom_from />
+        </item><item id="4" type="choice">
+          <label />
+          <status>8</status>
+          <require_confirmation>False</require_confirmation>
+          <set_marker_on_status>False</set_marker_on_status>
+          <identifier>mail_confirmation</identifier>
+        </item>
+      </items>
+    </status><status>
+      <id>4</id>
+      <name>Rendez-vous r&#233;serv&#233;</name>
+      <colour>00FF00</colour>
+      <visibility />
+      <items>
+        <item id="3" type="set-backoffice-fields">
+          <fields>
+            <field>
+              <field_id>bo5</field_id>
+              <value>=reservation_response_desk_label</value>
+            </field><field>
+              <field_id>bo3</field_id>
+              <value>=form_var_rdv</value>
+            </field>
+          </fields>
+        </item><item id="4" type="sendmail">
+          <to>
+            <item role_id="=form_var_email">=form_var_email</item>
+          </to><subject>TOWn-Time : Rendez-vous enregistr&#233;.</subject>
+          <body>Bonjour, 
+
+Ce mail afin de vous indiquez que votre rendez-vous "{{ form_var_rdv_type }}" a bien &#233;t&#233; enregistr&#233;.
+
+Date et heure de votre rendez-vous : {{ form_var_rdv }}
+
+Vous pourrez vous rendre au {{ form_var_guichet }}
+
+
+Veuillez vous pr&#233;senter 5 minutes en avance.
+
+
+
+Si vous contactez notre administration, veuillez communiquer votre num&#233;ro de suivis : 
+
+{{ form_tracking_code }}
+
+Si vous d&#233;sirez revoir votre d&#233;marche, suiviez ce lien : 
+
+{{ form_url }}
+
+
+</body>
+          <custom_from />
+        </item><item id="1" type="register-comment">
+          <comment>Votre rendez-vous a bien &#233;t&#233; enregistr&#233;.
+Veuillez vous pr&#233;senter au {{ reservation_response_desk_label }} de l'administration communale le {{ form_var_rdv }}.
+Pour une bonne organisation, nous vous demandons de ne pas arriver plus de 5 minutes avant l'heure de rendez-vous.
+{% if form_option_ttphone %}
+Si pour une raison ou une autre vous ne pouvez &#234;tre pr&#233;sent &#224; ce rendez-vous, veuillez prendre contact avec l'administration communale au {{ form_option_ttphone }}.
+{% endif %}
+
+Merci et &#224; bient&#244;t.</comment>
+        </item><item id="2" type="choice">
+          <label>Annuler mon rendez-vous</label>
+          <by>
+            <item role_id="_submitter">_submitter</item>
+            <item role_id="_receiver">_receiver</item>
+          </by><status>5</status>
+          <require_confirmation>True</require_confirmation>
+          <backoffice_info_text>&lt;p&gt;En appuyant sur ce bouton, vous annulez le rendez-vous et vous lib&#233;rez automatiquement la plage horaire de l'agenda.&lt;/p&gt;</backoffice_info_text>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>5</id>
+      <name>Annulation du rendez-vous</name>
+      <colour>FFFFFF</colour>
+      <visibility />
+      <items>
+        <item id="1" type="webservice_call">
+          <label>Annulation</label>
+          <url>{{reservation_response_api_cancel_url}}</url>
+          <method>POST</method>
+          <post>False</post>
+          <response_type>json</response_type>
+          <action_on_app_error>7</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <notify_on_errors>True</notify_on_errors>
+          <record_errors>True</record_errors>
+        </item><item id="3" type="register-comment">
+          <comment>Votre rendez-vous initialement r&#233;serv&#233; le {{ form_var_rdv }} a &#233;t&#233; annul&#233;.</comment>
+        </item><item id="2" type="jump">
+          <status>6</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status><status>
+      <id>6</id>
+      <name>Rendez-vous annul&#233;</name>
+      <colour>666666</colour>
+      <forced_endpoint>true</forced_endpoint>
+      <visibility />
+      <items>
+        <item id="1" type="set-backoffice-fields">
+          <fields>
+            <field>
+              <field_id>bo3</field_id>
+              <value>cancel</value>
+            </field>
+          </fields>
+        </item>
+      </items>
+    </status><status>
+      <id>3</id>
+      <name>Erreur d'enregistrement du rendez-vous</name>
+      <colour>FF0000</colour>
+      <visibility />
+      <items />
+    </status><status>
+      <id>7</id>
+      <name>Erreur annulation</name>
+      <colour>FF0000</colour>
+      <visibility />
+      <items />
+    </status><status>
+      <id>8</id>
+      <name>confirmation mail</name>
+      <colour>000000</colour>
+      <visibility>
+        <role>_receiver</role>
+        <role>_debug</role>
+      </visibility><items>
+        <item id="3" type="webservice_call">
+          <label>R&#233;servation</label>
+          <url>{{form_var_rdv_api_fillslot_url}}</url>
+          <request_signature_key />
+          <method>POST</method>
+          <post>False</post>
+          <post_data>
+            <item>
+              <name>user_name</name>
+              <value>{{form_user_display_name|safe}}</value>
+            </item><item>
+              <name>backoffice_url</name>
+              <value>{{form_url_backoffice|safe}}</value>
+            </item><item>
+              <name>label</name>
+              <value>{{form_name|safe}}</value>
+            </item>
+          </post_data><response_type>json</response_type>
+          <varname>reservation</varname>
+          <action_on_app_error>3</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <notify_on_errors>True</notify_on_errors>
+          <record_errors>False</record_errors>
+        </item><item id="2" type="jump">
+          <status>4</status>
+          <set_marker_on_status>False</set_marker_on_status>
+        </item>
+      </items>
+    </status>
+  </possible_status><global_actions>
+    <action>
+      <id>1</id>
+      <name>Supprimer</name>
+      <items>
+        <item id="2" type="webservice_call">
+          <label>D&#233;sinscription &#224; l'&#233;v&#233;nement (suppression)</label>
+          <url>{{reservation_response_api_cancel_url}}</url>
+          <method>POST</method>
+          <post>False</post>
+          <response_type>json</response_type>
+          <action_on_app_error>:pass</action_on_app_error>
+          <action_on_4xx>:stop</action_on_4xx>
+          <action_on_5xx>:stop</action_on_5xx>
+          <action_on_bad_data>:pass</action_on_bad_data>
+          <action_on_network_errors>:stop</action_on_network_errors>
+          <notify_on_errors>True</notify_on_errors>
+          <record_errors>True</record_errors>
+        </item><item id="1" type="remove" />
+      </items><triggers>
+        <trigger id="bf3df449-8326-493d-986a-a298fe796294" type="manual">
+          <roles>
+            <item role_id="_debug">_debug</item>
+          </roles>
+        </trigger>
+      </triggers>
+    </action>
+  </global_actions><variables>
+    <formdef>
+      <name>-</name>
+      <fields>
+        <field>
+          <label>Texte d'introduction</label>
+          <type>text</type>
+          <required>True</required>
+          <varname>texte_d_introduction</varname>
+          <in_listing>True</in_listing>
+          <pre>False</pre>
+          <id>5</id>
+        </field><field>
+          <label>N&#176; t&#233;l&#233;phone "permanence"</label>
+          <type>string</type>
+          <required>False</required>
+          <hint>Num&#233;ro de t&#233;l&#233;phone de l'administration &#224; composer en cas de demande d'annulation (ou de renseignement?),...</hint>
+          <varname>ttphone</varname>
+          <in_listing>False</in_listing>
+          <prefill>
+            <type>none</type>
+          </prefill><id>4</id>
+        </field><field>
+          <label>Nombre de d&#233;claration max pour 1 citoyen</label>
+          <type>string</type>
+          <required>False</required>
+          <hint>Le formulaire a &#233;t&#233; cr&#233;&#233; pour supporter maximum 5 d&#233;clarations.</hint>
+          <varname>max_declaration</varname>
+          <in_listing>True</in_listing>
+          <prefill>
+            <type>none</type>
+          </prefill><validation>^[1-5]$</validation>
+          <id>3</id>
+        </field>
+      </fields>
+    </formdef>
+  </variables><backoffice-fields>
+    <formdef>
+      <name>-</name>
+      <fields>
+        <field>
+          <label>Date du rendez-vous</label>
+          <type>string</type>
+          <required>False</required>
+          <varname>wf_rdv</varname>
+          <in_listing>True</in_listing>
+          <id>bo3</id>
+        </field><field>
+          <label>Guichet</label>
+          <type>string</type>
+          <required>False</required>
+          <varname>guichet</varname>
+          <in_listing>True</in_listing>
+          <id>bo5</id>
+        </field>
+      </fields>
+    </formdef>
+  </backoffice-fields>
+</workflow>

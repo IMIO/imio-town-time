@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="iso-8859-15"?>
+<formdef id="150">
+  <name>demo - TOWn-Time</name>
+  <url_name>demo-town-time</url_name>
+  <internal_identifier>demo-town-time</internal_identifier>
+  <discussion>false</discussion>
+  <detailed_emails>true</detailed_emails>
+  <disabled>false</disabled>
+  <only_allow_one>false</only_allow_one>
+  <enable_tracking_codes>true</enable_tracking_codes>
+  <confirmation>true</confirmation>
+  <always_advertise>true</always_advertise>
+  <private_status_and_history>false</private_status_and_history>
+  <has_captcha>false</has_captcha>
+  <skip_from_360_view>false</skip_from_360_view>
+  <category category_id="102">Imio</category>
+  <workflow workflow_id="26">demo - TOWn-Time</workflow>
+  <max_field_id>34</max_field_id>
+  <last_modification user_id="1">2019-01-18 14:54:25</last_modification>
+  <fields>
+    <field>
+      <label>Vos coordonn&#233;es</label>
+      <type>page</type>
+      <id>4</id>
+    </field><field>
+      <label>&lt;p&gt;{{form_option_texte_d_introduction}}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Num&#233;ro de t&#233;l&#233;phone de permanence :&lt;/strong&gt; {{form_option_ttphone}} (en cas d'annulation,...).&lt;/p&gt;</label>
+      <type>comment</type>
+      <id>34</id>
+    </field><field>
+      <label>Vos coordonn&#233;es</label>
+      <type>title</type>
+      <id>24</id>
+    </field><field>
+      <label>Nom</label>
+      <type>string</type>
+      <required>True</required>
+      <varname>nom</varname>
+      <in_listing>True</in_listing>
+      <extra_css_class>grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_last_name</value>
+      </prefill><id>5</id>
+    </field><field>
+      <label>Pr&#233;nom</label>
+      <type>string</type>
+      <required>True</required>
+      <varname>prenom</varname>
+      <in_listing>True</in_listing>
+      <extra_css_class>grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_first_name</value>
+      </prefill><id>6</id>
+    </field><field>
+      <label>Num&#233;ro de t&#233;l&#233;phone / GSM</label>
+      <type>string</type>
+      <required>False</required>
+      <varname>telephone</varname>
+      <in_listing>False</in_listing>
+      <extra_css_class>grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_phone</value>
+      </prefill><id>12</id>
+    </field><field>
+      <label>Adresse e-mail</label>
+      <type>email</type>
+      <required>True</required>
+      <varname>email</varname>
+      <in_listing>False</in_listing>
+      <extra_css_class>grid-1-2</extra_css_class>
+      <prefill>
+        <type>user</type>
+        <value>_email</value>
+      </prefill><id>14</id>
+    </field><field>
+      <label>Concernant vos d&#233;clarations</label>
+      <type>title</type>
+      <id>25</id>
+    </field><field>
+      <label>Nombre de d&#233;claration &#224; remplir</label>
+      <type>item</type>
+      <required>False</required>
+      <varname>type_rdv</varname>
+      <in_listing>False</in_listing>
+      <prefill>
+        <type>none</type>
+      </prefill><show_as_radio>False</show_as_radio>
+      <data_source>
+        <type>formula</type>
+        <value>script.commune('towntime_add_type_rdv_dic_key', {'lst_type_rdv': webservice.agenda_get_rdv_contribution.get('data')})[:int(form_option_max_declaration)]</value>
+      </data_source><in_filters>False</in_filters>
+      <anonymise>False</anonymise>
+      <display_disabled_items>False</display_disabled_items>
+      <id>1</id>
+    </field><field>
+      <label>Formulaire de prise de rendez-vous pour les permanences fiscales</label>
+      <type>page</type>
+      <id>3</id>
+    </field><field>
+      <label>Agenda</label>
+      <type>item</type>
+      <required>True</required>
+      <varname>rdv</varname>
+      <in_listing>True</in_listing>
+      <extra_css_class>template-meetings</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><show_as_radio>False</show_as_radio>
+      <data_source>
+        <type>json</type>
+        <value>{{agendas_url}}api/agenda/agenda-rendez-vous-contributions/meetings/{{form_var_type_rdv_raw}}/datetimes/</value>
+      </data_source><in_filters>False</in_filters>
+      <anonymise>False</anonymise>
+      <display_disabled_items>True</display_disabled_items>
+      <id>2</id>
+    </field><field>
+      <label>Num&#233;ro national</label>
+      <type>page</type>
+      <post_conditions>
+        <post_condition>
+          <condition>
+            <type>python</type>
+            <value>script.commune('is_valid_belgian_nn', {'nn':form_var_nn_1})</value>
+          </condition><error_message>Le premier num&#233;ro national entr&#233; ne semble pas correct.</error_message>
+        </post_condition><post_condition>
+          <condition>
+            <type>python</type>
+            <value>script.commune('is_valid_belgian_nn', {'nn':form_var_nn_2}) or form_var_nn_2 is None</value>
+          </condition><error_message>Le second num&#233;ro national entr&#233; ne semble pas correct.</error_message>
+        </post_condition><post_condition>
+          <condition>
+            <type>python</type>
+            <value>script.same_nrn(form_var_nn_1) is False</value>
+          </condition><error_message>Un rendez-vous a d&#233;j&#224; &#233;t&#233; pris pour votre num&#233;ro national.</error_message>
+        </post_condition><post_condition>
+          <condition>
+            <type>python</type>
+            <value>script.same_nrn(form_var_nn_2) is False</value>
+          </condition><error_message>Un rendez-vous a d&#233;j&#224; &#233;t&#233; pris pour le num&#233;ro national n&#176;2.</error_message>
+        </post_condition><post_condition>
+          <condition>
+            <type>python</type>
+            <value>script.commune('towntime_are_nn_all_differents', {'lst_nn':[form_var_nn_1, form_var_nn_2, form_var_nn_3, form_var_nn_4, form_var_nn_5]})</value>
+          </condition><error_message>Les num&#233;ros nationnaux encod&#233;s doivent tous &#234;tre diff&#233;rents.</error_message>
+        </post_condition><post_condition>
+          <condition>
+            <type>python</type>
+            <value>script.same_nrn(form_var_nn_3) is False</value>
+          </condition><error_message>Un rendez-vous a d&#233;j&#224; &#233;t&#233; pris pour le num&#233;ro national n&#176;3.</error_message>
+        </post_condition><post_condition>
+          <condition>
+            <type>python</type>
+            <value>script.same_nrn(form_var_nn_4) is False</value>
+          </condition><error_message>Un rendez-vous a d&#233;j&#224; &#233;t&#233; pris pour le num&#233;ro national n&#176;4.</error_message>
+        </post_condition><post_condition>
+          <condition>
+            <type>python</type>
+            <value>script.same_nrn(form_var_nn_5) is False</value>
+          </condition><error_message>Un rendez-vous a d&#233;j&#224; &#233;t&#233; pris pour le num&#233;ro national n&#176;5.</error_message>
+        </post_condition><post_condition>
+          <condition>
+            <type>python</type>
+            <value>script.commune('is_valid_belgian_nn', {'nn':form_var_nn_3}) or form_var_nn_3 is None</value>
+          </condition><error_message>Le troisi&#232;me num&#233;ro national entr&#233; ne semble pas correct.</error_message>
+        </post_condition><post_condition>
+          <condition>
+            <type>python</type>
+            <value>script.commune('is_valid_belgian_nn', {'nn':form_var_nn_4}) or form_var_nn_4 is None</value>
+          </condition><error_message>Le quatri&#232;me num&#233;ro national entr&#233; ne semble pas correct.</error_message>
+        </post_condition><post_condition>
+          <condition>
+            <type>python</type>
+            <value>script.commune('is_valid_belgian_nn', {'nn':form_var_nn_5}) or form_var_nn_5 is None</value>
+          </condition><error_message>Le cinqui&#232;me num&#233;ro national entr&#233; ne semble pas correct.</error_message>
+        </post_condition>
+      </post_conditions><id>17</id>
+    </field><field>
+      <label>&lt;p&gt;En cas d'enregistrement d'une d&#233;claration pour une ou plusieurs personne tiers, n'oubliez pas de&amp;nbsp;vous munir d'une procuration pour chaque d&#233;claration suppl&#233;mentaire.&lt;/p&gt;&lt;p&gt;EXEMPLE DE PROCURATION.&lt;/p&gt;</label>
+      <type>comment</type>
+      <id>33</id>
+    </field><field>
+      <label>Votre num&#233;ro national</label>
+      <type>string</type>
+      <required>False</required>
+      <varname>nn_1</varname>
+      <in_listing>True</in_listing>
+      <extra_css_class>grid-1-2</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><id>16</id>
+    </field><field>
+      <label>Num&#233;ro national de la d&#233;claration n&#176;2</label>
+      <type>string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_type_rdv_numericid|add:"0" &gt;= 2</value>
+      </condition><required>True</required>
+      <varname>nn_2</varname>
+      <in_listing>True</in_listing>
+      <extra_css_class>grid-1-2</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><id>18</id>
+    </field><field>
+      <label>Num&#233;ro national de la d&#233;claration n&#176;3</label>
+      <type>string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_type_rdv_numericid|add:"0" &gt;= 3</value>
+      </condition><required>True</required>
+      <varname>nn_3</varname>
+      <in_listing>True</in_listing>
+      <extra_css_class>grid-1-2</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><id>29</id>
+    </field><field>
+      <label>Num&#233;ro national de la d&#233;claration n&#176;4</label>
+      <type>string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_type_rdv_numericid|add:"0" &gt;= 4</value>
+      </condition><required>True</required>
+      <varname>nn_4</varname>
+      <in_listing>True</in_listing>
+      <extra_css_class>grid-1-2</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><id>30</id>
+    </field><field>
+      <label>Num&#233;ro national de la d&#233;claration n&#176;5</label>
+      <type>string</type>
+      <condition>
+        <type>django</type>
+        <value>form_var_type_rdv_numericid|add:"0" &gt;= 5</value>
+      </condition><required>True</required>
+      <varname>nn_5</varname>
+      <in_listing>True</in_listing>
+      <extra_css_class>grid-1-2</extra_css_class>
+      <prefill>
+        <type>none</type>
+      </prefill><id>31</id>
+    </field>
+  </fields><user-roles>
+    <role role_id="logged-users">logged-users</role>
+  </user-roles><roles>
+    <role role_id="08b4ba67eb2d421ea88d4bb0256a9666" role_key="_receiver">Debug</role>
+    <role role_id="08b4ba67eb2d421ea88d4bb0256a9666" role_key="_debug">Debug</role>
+  </roles><options>
+    <option varname="max_declaration">4</option>
+    <option varname="texte_d_introduction">Nos dates de permanence &#224; l'aide &#224; la compl&#233;tion de votre d&#233;claration (uniquement pour les particuliers) sont les suivantes : 04/04/2019, 05/04/2019, ...</option>
+    <option varname="temps_prevu">1</option>
+    <option varname="dates_permanence" />
+    <option varname="ttphone">86986697</option>
+  </options><geolocations />
+</formdef>
