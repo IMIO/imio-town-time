@@ -4,7 +4,7 @@ set -e
 USER="wcs"
 
 # installation path
-install_path = "/usr/lib/imio_town_time"
+install_path="/usr/lib/imio_town_time"
 
 # WCS : Get wcs tenant
 wcs_tenant=$(python $install_path/get-wcs-tenant.py 2>&1)
@@ -13,12 +13,6 @@ commune=$(echo "$wcs_tenant" | sed "s/-formulaires.guichet-citoyen.be//")
 
 # COMBO : Get combo tenant
 combo_tenant=$(echo "$wcs_tenant" | sed "s/-formulaires//")
-
-if ! [ -d /var/lib/wcs/$wcs_tenant/wscalls/ ]
-then
-    mkdir /var/lib/wcs/$wcs_tenant/wscalls
-fi
-cp $install_path/wscalls/* /var/lib/wcs/$wcs_tenant/wscalls
 
 # WCS : Create categories (Categories must be create before forms)
 cp $install_path/category/town-time /var/lib/wcs/$wcs_tenant/categories/
