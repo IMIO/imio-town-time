@@ -1,5 +1,5 @@
 recursive-include imio_town_time *
-recursive-include imio_town_time/categories *
+recursive-include imio_town_time/category *
 recursive-include imio_town_time/agenda *
 recursive-include imio_town_time/forms *
 recursive-include imio_town_time/workflows *
