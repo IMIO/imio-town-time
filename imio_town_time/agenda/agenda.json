@@ -188,8 +188,8 @@
       "slug": "agenda-rendez-vous-contributions", 
       "maximal_booking_delay": 56, 
       "permissions": {
-        "edit": "Debug", 
-        "view": "Debug"
+        "edit": "", 
+        "view": ""
       }
     }
   ]
