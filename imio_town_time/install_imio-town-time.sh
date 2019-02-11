@@ -19,6 +19,12 @@ combo_tenant=$(echo "$wcs_tenant" | sed "s/-formulaires//")
 # WCS : Create categories (Categories must be create before forms)
 cp $install_path/category/town-time /var/lib/wcs/$wcs_tenant/categories/
 
+if ! [ -d /var/lib/wcs/$wcs_tenant/wscalls/ ]
+then
+    mkdir /var/lib/wcs/$wcs_tenant/wscalls
+fi
+cp $install_path/wscalls/* /var/lib/wcs/$wcs_tenant/wscalls
+
 chown -R ${USER}:${USER} /var/lib/wcs/$wcs_tenant/categories/town-time 
 
 # WCS : Script to import xml workflow in wcs (Workflows must be create before forms)
