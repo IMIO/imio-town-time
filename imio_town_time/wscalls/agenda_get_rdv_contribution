@@ -1,0 +1,13 @@
+<wscalls id="agenda_get_rdv_contribution">
+  <name>agenda_get_rdv_contribution</name>
+  <slug>agenda_get_rdv_contribution</slug>
+  <description>Récupère les différents type de rdv pour les contributions hors de l'agenda.</description>
+  <request>
+    <url>{{agendas_url}}/api/agenda/agenda-rendez-vous-contributions/meetings/</url>
+    <request_signature_key />
+    <method>GET</method>
+    <qs_data />
+    <post_data />
+  </request>
+</wscalls>
+
