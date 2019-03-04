@@ -34,4 +34,4 @@ sudo -u  wcs wcsctl -f /etc/wcs/wcs-au-quotidien.cfg runscript --vhost=$wcs_tena
 sudo -u  wcs wcsctl -f /etc/wcs/wcs-au-quotidien.cfg runscript --vhost=$wcs_tenant $install_path/import-forms.py $install_path
 
 # Chrono : Deploy agenda.
-sudo -u chrono chrono-manage tenant_command import_site -d $commune-agendas.$domain $install_path/agenda/agenda.json
+sudo -u chrono chrono-manage tenant_command import_site -d $commune-agenda.$domain $install_path/agenda/agenda.json
