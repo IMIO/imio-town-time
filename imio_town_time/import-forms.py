@@ -3,6 +3,12 @@ import sys
 from wcs.formdef import FormDef
 lst_formdef_ids = []
 lst_formdef_names = []
+
+DEF_FORMDEF_NAME = "TOWn-Time"
+DEF_FORMDEF_URL_NAME = "town-time"
+DEF_FORMDEF_INTERNAL_IDENTIFIER = "town-time"
+DEF_FORMDEF_CATEGORY = "Imio"
+
 conv = lambda x: int(x)
 for formdef in FormDef.select():
     lst_formdef_names.append(formdef.name)

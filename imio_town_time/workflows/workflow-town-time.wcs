@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <workflow id="26">
-  <name>demo - TOWn-Time</name>
+  <name>TOWn-Time</name>
   <roles>
     <role id="_receiver">Agent traitant</role>
     <role id="_debug">Debug</role>
