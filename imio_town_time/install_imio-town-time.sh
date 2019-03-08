@@ -16,6 +16,9 @@ commune=$(echo "$wcs_tenant" | sed "s/-formulaires.$domain//")
 # COMBO : Get combo tenant
 combo_tenant=$(echo "$wcs_tenant" | sed "s/-formulaires//")
 
+# HOBO : Get hobo tenant
+hobo_tenant=$(echo "$wcs_tenant" | sed "s/-formulaires/-hobo/")
+
 # WCS : Create categories (Categories must be create before forms)
 cp $install_path/category/town-time /var/lib/wcs/$wcs_tenant/categories/
 
@@ -35,3 +38,6 @@ sudo -u  wcs wcsctl -f /etc/wcs/wcs-au-quotidien.cfg runscript --vhost=$wcs_tena
 
 # Chrono : Deploy agenda.
 sudo -u chrono chrono-manage tenant_command import_site -d $commune-agenda.$domain $install_path/agenda/agenda.json
+
+# Hobo create var.
+sudo -u hobo hobo-manage tenant_command runscript -d $hobo_tenant $install_path/hobo_create_var.py
