@@ -20,7 +20,12 @@ combo_tenant=$(echo "$wcs_tenant" | sed "s/-formulaires//")
 hobo_tenant=$(echo "$wcs_tenant" | sed "s/-formulaires/-hobo/")
 
 # WCS : Create categories (Categories must be create before forms)
-cp $install_path/category/town-time /var/lib/wcs/$wcs_tenant/categories/
+
+category_registration_number=$(ls /var/lib/wcs/$wcs_tenant/categories |  sort -n | tail -1)
+sed -i 's/id="0"/id="'$(($category_registration_number + 1))'"/g' $install_path/category/0
+mv $install_path/category/0 $install_path/category/$(($category_registration_number + 1))
+cp $install_path/category/$(($category_registration_number + 1)) /var/lib/wcs/$wcs_tenant/categories/$(($category_registration_number + 1))
+chown -R ${USER}:${USER} /var/lib/wcs/$wcs_tenant/categories/$(($category_registration_number + 1)) 
 
 if ! [ -d /var/lib/wcs/$wcs_tenant/wscalls/ ]
 then
@@ -28,16 +33,15 @@ then
 fi
 cp $install_path/wscalls/* /var/lib/wcs/$wcs_tenant/wscalls
 
-chown -R ${USER}:${USER} /var/lib/wcs/$wcs_tenant/categories/town-time 
-
 # WCS : Script to import xml workflow in wcs (Workflows must be create before forms)
 sudo -u  wcs wcsctl -f /etc/wcs/wcs-au-quotidien.cfg runscript --vhost=$wcs_tenant $install_path/import-workflows.py $install_path
 
 # WCS : Script to import xml forms in wcs
+sed -i 's/category_id="0"/category_id="'$(($category_registration_number + 1))'"/g' $install_path/forms/form-town-time.wcs
 sudo -u  wcs wcsctl -f /etc/wcs/wcs-au-quotidien.cfg runscript --vhost=$wcs_tenant $install_path/import-forms.py $install_path
 
 # Chrono : Deploy agenda.
 sudo -u chrono chrono-manage tenant_command import_site -d $commune-agenda.$domain $install_path/agenda/agenda.json
 
 # Hobo create var.
-sudo -u hobo hobo-manage tenant_command runscript -d $hobo_tenant $install_path/hobo_create_var.py
+sudo -u hobo hobo-manage tenant_command runscript -d $commune-hobo.$domain $install_path/hobo_create_var.py
