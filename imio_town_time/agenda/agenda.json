@@ -61,48 +61,42 @@
               "recurrence_id": 0, 
               "label": "", 
               "update_datetime": "2018-04-18 09:07:58", 
-              "end_datetime": "2018-05-24 08:55:00", 
-              "external_id": ""
+              "end_datetime": "2018-05-24 08:55:00" 
             }, 
             {
               "start_datetime": "2018-05-24 18:00:00", 
               "recurrence_id": 0, 
               "label": "", 
               "update_datetime": "2018-04-18 09:05:19", 
-              "end_datetime": "2018-05-29 08:55:00", 
-              "external_id": ""
+              "end_datetime": "2018-05-29 08:55:00"
             }, 
             {
               "start_datetime": "2018-05-29 18:00:00", 
               "recurrence_id": 0, 
               "label": "", 
               "update_datetime": "2018-04-18 09:06:35", 
-              "end_datetime": "2018-05-31 08:55:00", 
-              "external_id": ""
+              "end_datetime": "2018-05-31 08:55:00"
             }, 
             {
               "start_datetime": "2018-05-31 18:00:00", 
               "recurrence_id": 0, 
               "label": "", 
               "update_datetime": "2018-04-18 09:07:14", 
-              "end_datetime": "2018-06-05 08:55:00", 
-              "external_id": ""
+              "end_datetime": "2018-06-05 08:55:00"
             }, 
             {
               "start_datetime": "2018-06-05 18:00:00", 
               "recurrence_id": 0, 
               "label": "", 
               "update_datetime": "2018-04-18 09:07:44", 
-              "end_datetime": "2018-12-31 23:55:00", 
-              "external_id": ""
+              "end_datetime": "2018-12-31 23:55:00"
             }, 
             {
               "start_datetime": "2019-02-01 00:00:00", 
               "recurrence_id": 0, 
               "label": "END", 
               "update_datetime": "2019-01-18 10:34:19", 
-              "end_datetime": "2020-12-31 23:55:00", 
-              "external_id": ""
+              "end_datetime": "2020-12-31 23:55:00"
             }
           ], 
           "slug": "guichet-1-1", 
@@ -137,48 +131,42 @@
               "recurrence_id": 0, 
               "label": "", 
               "update_datetime": "2018-04-18 09:08:21", 
-              "end_datetime": "2018-05-24 08:55:00", 
-              "external_id": ""
+              "end_datetime": "2018-05-24 08:55:00"
             }, 
             {
               "start_datetime": "2018-05-24 18:00:00", 
               "recurrence_id": 0, 
               "label": "", 
               "update_datetime": "2018-04-18 09:08:44", 
-              "end_datetime": "2018-05-29 08:55:00", 
-              "external_id": ""
+              "end_datetime": "2018-05-29 08:55:00"
             }, 
             {
               "start_datetime": "2018-05-29 18:00:00", 
               "recurrence_id": 0, 
               "label": "", 
               "update_datetime": "2018-04-18 09:09:08", 
-              "end_datetime": "2018-05-31 08:55:00", 
-              "external_id": ""
+              "end_datetime": "2018-05-31 08:55:00"
             }, 
             {
               "start_datetime": "2018-05-31 18:00:00", 
               "recurrence_id": 0, 
               "label": "", 
               "update_datetime": "2018-04-18 09:09:37", 
-              "end_datetime": "2018-06-05 08:55:00", 
-              "external_id": ""
+              "end_datetime": "2018-06-05 08:55:00"
             }, 
             {
               "start_datetime": "2018-06-05 18:00:00", 
               "recurrence_id": 0, 
               "label": "", 
               "update_datetime": "2018-04-18 09:11:34", 
-              "end_datetime": "2018-12-31 23:55:00", 
-              "external_id": ""
+              "end_datetime": "2018-12-31 23:55:00"
             }, 
             {
               "start_datetime": "2019-02-01 00:00:00", 
               "recurrence_id": 0, 
               "label": "", 
               "update_datetime": "2019-01-18 10:34:47", 
-              "end_datetime": "2020-12-31 23:55:00", 
-              "external_id": ""
+              "end_datetime": "2020-12-31 23:55:00"
             }
           ], 
           "slug": "guichet-2", 
