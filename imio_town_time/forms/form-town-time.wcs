@@ -26,6 +26,7 @@
       <label>&lt;p&gt;{{form_option_texte_d_introduction}}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Num&#233;ro de t&#233;l&#233;phone de permanence :&lt;/strong&gt; {{form_option_ttphone}} (en cas d'annulation,...).&lt;/p&gt;</label>
       <type>comment</type>
       <id>34</id>
+      <extra_css_class>template-br-comment</extra_css_class>
     </field><field>
       <label>Vos coordonn&#233;es</label>
       <type>title</type>
