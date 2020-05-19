@@ -9,7 +9,7 @@ domain=$1
 install_path="/usr/lib/imio_town_time"
 
 # WCS : Get wcs tenant
-wcs_tenant=$(python $install_path/get-wcs-tenant.py 2>&1)
+wcs_tenant=$(python3 $install_path/get-wcs-tenant.py 2>&1)
 
 commune=$(echo "$wcs_tenant" | sed "s/-formulaires.$domain//")
 
