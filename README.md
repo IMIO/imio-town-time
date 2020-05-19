@@ -1,6 +1,6 @@
 # imio-town-time
 
-- E-Guichet town-time : Prise de rendez-vous pour l'aide a la completion de la declaration fiscale.  
+- Le formulaire TOWn-time (TOW pour Tax-On-Web) permet la prise de rendez-vous pour l'aide à la completion de la declaration fiscale. 
 
 For agenda.json : don't forget to remove specific roles in json structure before commit athis new structure.
 
