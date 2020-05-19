@@ -6,4 +6,4 @@ for var in hobo_vars.all():
     varnames.append(var.name)
 
 if 'check_duplicate_nn' not in varnames:
-    Variable(name='check_duplicate_nn', label='check_duplicate_nn', value='False').save()
+    Variable(name='check_duplicate_nn', label='towntime_check_duplicate_nn', value='False').save()
