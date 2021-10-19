@@ -12,8 +12,11 @@ class inst(install):
         path = os.getcwd().replace(" ", "\ ").replace("(","\(").replace(")","\)") + "/bin/"
         os.system("sh "+path+"install_imio-town-time.sh")
 
+version = "0.1.2"
+
 setup(
     name='imio-town-time',
+    version=version,
     author='Christophe Boulanger',
     author_email='christophe.boulanger@imio.be',
     packages=find_packages(),
